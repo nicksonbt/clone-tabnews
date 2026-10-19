@@ -1,0 +1,46 @@
+plugins {
+    id 'com.android.application'
+}
+
+// No GitHub Actions, cada build ganha um versionCode maior para o
+// Android aceitar instalar por cima da versão anterior.
+def buildNumber = Integer.parseInt(System.getenv('GITHUB_RUN_NUMBER') ?: '1')
+
+android {
+    namespace 'com.nicksonbt.tarefas'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.nicksonbt.tarefas'
+        minSdk 26
+        targetSdk 35
+        versionCode buildNumber
+        versionName "1.0.${buildNumber}"
+    }
+
+    // Chave fixa (de uso pessoal) para que as atualizações instalem por
+    // cima sem precisar desinstalar o app e perder as tarefas.
+    signingConfigs {
+        pessoal {
+            storeFile file('tarefas.keystore')
+            storePassword 'android'
+            keyAlias 'tarefas'
+            keyPassword 'android'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.pessoal
+        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.pessoal
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}

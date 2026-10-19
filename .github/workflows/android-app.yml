@@ -1,0 +1,47 @@
+name: App Android (Tarefas)
+
+on:
+  push:
+    paths:
+      - "android-app/**"
+      - ".github/workflows/android-app.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android-app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Compilar APK
+        run: ./gradlew --no-daemon assembleRelease
+
+      - name: Renomear APK
+        run: cp app/build/outputs/apk/release/app-release.apk Tarefas.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Tarefas-apk
+          path: android-app/Tarefas.apk
+
+      - name: Publicar Release para baixar no celular
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "tarefas-v${{ github.run_number }}" Tarefas.apk \
+            --target "${{ github.sha }}" \
+            --title "Tarefas v1.0.${{ github.run_number }}" \
+            --notes "Abra esta página no celular Android, toque em **Tarefas.apk** e instale. Depois, segure na tela inicial → Widgets → Tarefas."

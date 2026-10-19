@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tarefas</string>
+    <string name="title">Minhas tarefas</string>
+    <string name="hint_new_task">Nova tarefa…</string>
+    <string name="add">Adicionar</string>
+    <string name="delete">Excluir tarefa</string>
+    <string name="clear_done">Limpar concluídas</string>
+    <string name="empty">Nenhuma tarefa ainda.\nAdicione a primeira aí em cima!</string>
+    <string name="summary_none">Nenhuma tarefa</string>
+    <string name="summary_all_done">Tudo feito! 🎉</string>
+    <plurals name="summary_pending">
+        <item quantity="one">%d tarefa pendente</item>
+        <item quantity="other">%d tarefas pendentes</item>
+    </plurals>
+    <string name="widget_name">Tarefas</string>
+    <string name="widget_description">Veja suas tarefas e toque para concluir</string>
+    <string name="widget_empty">Nada por aqui.\nToque em + para adicionar.</string>
+</resources>
