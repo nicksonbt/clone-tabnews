@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="brand">#4F46E5</color>
+    <color name="brand">#DB2777</color>
     <color name="on_brand">#FFFFFF</color>
     <color name="bg">#F4F5FA</color>
     <color name="surface">#FFFFFF</color>
     <color name="text">#1D2030</color>
     <color name="text_dim">#868BA0</color>
-    <color name="launcher_bg">#4F46E5</color>
+    <color name="launcher_bg">#DB2777</color>
 </resources>
